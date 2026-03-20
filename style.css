@@ -1,0 +1,33 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f0f8ff;
+    text-align: center;
+    padding: 50px;
+}
+
+input, button {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid #888;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.weather-box {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    display: inline-block;
+    border-radius: 10px;
+    background-color: #e0f7fa;
+}
