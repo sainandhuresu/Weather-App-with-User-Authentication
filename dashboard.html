@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>Welcome, {{ user }}!</h2>
+    <a href="{{ url_for('logout') }}">Logout</a>
+
+    <form method="POST" action="/dashboard">
+        <input type="text" name="city" placeholder="Enter City" required>
+        <button type="submit">Get Weather</button>
+    </form>
+
+    {% if message %}
+        <p style="color:red;">{{ message }}</p>
+    {% endif %}
+
+    {% if weather %}
+    <div class="weather-box">
+        <h3>Weather in {{ weather.city }}</h3>
+        <p>{{ weather.description }}</p>
+        <p>{{ weather.temp }} °C</p>
+    </div>
+    {% endif %}
+</body>
+</html>
