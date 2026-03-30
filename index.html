@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Weather App</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <!-- Chart.js for the dynamic graph -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Phosphor Icons for premium aesthetic -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+
+<body style="align-items: flex-start; padding-top: 2rem;">
+
+  <div class="dashboard-container" id="dashboard">
+
+    <!-- Left Column: Current Weather -->
+    <div class="glass-panel current-weather">
+      <header style="justify-content: center; border: none; margin-bottom: 0;">
+        <div class="search-bar">
+          <input type="text" id="citySearch" placeholder="Search city..." autocomplete="off">
+          <button id="searchBtn"><i class="ph ph-magnifying-glass"></i></button>
+        </div>
+      </header>
+
+      <div id="weatherContent" style="display: none;">
+        <h2 id="cityName" style="font-size: 2rem; margin-top: 1rem;">London</h2>
+        <div class="condition"><i id="currentIcon" class="ph ph-cloud-sun ph-2x"></i></div>
+        <div class="temperature" id="currentTemp">22°</div>
+        <div class="condition" id="currentDesc">Partly Cloudy</div>
+
+        <div class="weather-details">
+          <div class="detail-item">
+            <div class="detail-label">Humidity</div>
+            <div class="detail-value" id="currentHum">45%</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Wind</div>
+            <div class="detail-value" id="currentWind">12 km/h</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="loading" class="loading">
+        <div class="spinner"></div>
+        Fetching...
+      </div>
+    </div>
+
+    <!-- Right Column: Forecast & Graph -->
+    <div class="dashboard-main">
+      <header>
+        <h3>{{ user.name }}'s Dashboard</h3>
+        <a href="{{ url_for('logout') }}" id="logoutBtn" class="logout-btn"
+          style="text-decoration:none; display:inline-flex; align-items:center; gap:0.5rem;">Log Out <i
+            class="ph ph-sign-out"></i></a>
+      </header>
+
+      <!-- 7-Day Forecast Grid -->
+      <div class="forecast-grid" id="forecastGrid">
+        <!-- populated via JS -->
+      </div>
+
+      <!-- Interactive Graph Panel -->
+      <div class="glass-panel" style="max-width: 100%; margin-top: 1rem; padding: 1.5rem;">
+        <h3 style="margin-bottom: 1rem; font-size: 1.25rem;">Temperature Trend</h3>
+        <div class="graph-container">
+          <canvas id="weatherChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>

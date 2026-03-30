@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - Weather Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+  <div class="glass-panel">
+    <h1 class="title">Create Account</h1>
+
+    {% with messages = get_flashed_messages(category_filter=["error"]) %}
+    {% if messages %}
+    <div
+      style="color: var(--danger-color); margin-bottom: 1rem; text-align: center; border: 1px solid var(--danger-color); padding: 0.5rem; border-radius: 8px; background: rgba(239, 68, 68, 0.1);">
+      {% for message in messages %}
+      {{ message }}
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="{{ url_for('signup') }}">
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" required placeholder="John Doe">
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" required placeholder="you@example.com">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required placeholder="••••••••" minlength="6">
+      </div>
+      <button type="submit" class="btn">Sign Up</button>
+      <p class="link-text">Already have an account? <a href="{{ url_for('login') }}">Log In</a></p>
+    </form>
+  </div>
+</body>
+
+</html>
